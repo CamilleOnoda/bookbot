@@ -1,15 +1,32 @@
 def main():
-    with open("/home/kamillentee/workspace/github.com/CamilleOnoda/bookbot/books/frankenstein.txt") as f:
-        file_contents = f.read()
-        words = file_contents.split()
-        total_words = 0
-        for word in words:
-            total_words += 1
-            
-        count_each_character(file_contents, total_words)
+    book_path = "/home/kamillentee/workspace/github.com/CamilleOnoda/bookbot/books/frankenstein.txt"
+    text = open_text(book_path)
+    num_words = count_num_words(text)
+    characters_dict = count_each_character(text, num_words)
+
+    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"{num_words} words found in the document")
+    print()
+    for key, value in characters_dict.items():
+        print(f"The '{key}' character was found {value} times")
+    print()
+    print("--- End of report ---")
 
 
-def count_each_character(text, total_words):
+def open_text(path):
+    with open(path) as f:
+        return f.read()
+
+
+def count_num_words(text):
+    words = text.split()
+    total_words = 0
+    for word in words:
+        total_words += 1
+    return total_words
+
+
+def count_each_character(text, words):
     character_count = {}
     lower_text = text.lower()
 
@@ -20,14 +37,6 @@ def count_each_character(text, total_words):
             elif char in character_count:
                 character_count[char] += 1
     
-    print_report(character_count, total_words)
-
-
-def print_report(character_count, total_words):
-    print("--- Begin report of books/frankenstein.txt ---")
-    print(f"{total_words} words found in the document")
-    for key, value in character_count.items():
-        print(f"The {key} character was found {value} times")
-    print("--- End of report ---")
+    return character_count
 
 main()
