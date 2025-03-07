@@ -5,7 +5,6 @@ def count_num_words(text):
         total_words += 1
     return total_words
 
-
 def count_each_character(text):
     character_count = {}
     lower_text = text.lower()
@@ -16,5 +15,4 @@ def count_each_character(text):
                 character_count[char] = 1
             elif char in character_count:
                 character_count[char] += 1
-    
     return character_count
