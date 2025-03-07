@@ -1,4 +1,4 @@
-from stats import count_num_words
+from stats import count_num_words, count_each_character
 import sys
 
 
@@ -26,20 +26,6 @@ def main():
 def open_text(path):
     with open(path) as f:
         return f.read()
-
-
-def count_each_character(text):
-    character_count = {}
-    lower_text = text.lower()
-
-    for char in lower_text:
-        if char.isalpha():
-            if char not in character_count:
-                character_count[char] = 1
-            elif char in character_count:
-                character_count[char] += 1
-    
-    return character_count
 
 
 def sort_dict(dict_to_sort):
